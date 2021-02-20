@@ -1,9 +1,61 @@
-<bold> 1) <bold/> Supplier.get() ------> It returns something without taking any arguments. 
-Exmaple: Supplier<Integer> supplier = new Supplier<Integer>() {
+ 1) T get() ---SUPPLIER---> It returns something without taking any arguments. 
+    Exmaple: 
+    
+   Supplier<Integer> supplier = new Supplier<Integer>() {
    @Override
    public Integer get() {
       return new Random().nextInt();
    }
 };
-
 System.out.println(supplier.get());
+
+<br/>
+
+2) void accept(T) ---CONSUMER---> It takes 1 argument and doesnt return anything.
+Consumer<Integer> consumer = new Consumer<Integer>() {
+   @Override
+   public void accept(Integer integer) {
+      System.out.println(integer * 2);
+   }
+};
+consumer.accept(6); //print 12
+
+<br/>
+
+3) R apply(T var1); ---FUNCTION---> Takes 1 argument and returns 1 argument.
+Function<Integer, String > function = new Function<Integer, String>() {
+   @Override
+   public String apply(Integer integer) {
+      return "" + integer + "test";
+   }
+};
+System.out.println(function.apply(10));// 10test
+
+<br/>
+
+4) boolean test(T var1); ---PREDICATE---> Takes 1 argument and returns boolean
+
+Predicate<String> predicate = new Predicate<String>() {
+   @Override
+   public boolean test(String s) {
+      return s.contains("a");
+   }
+};
+System.out.println(predicate.test("australia")); <br/>
+
+Special Example:
+Predicate<String> predicate = new Predicate<String>() {
+   @Override
+   public boolean test(String s) {
+      return s.contains("a");
+   }
+};
+
+Predicate<String> predicate2 = new Predicate<String>() {
+   @Override
+   public boolean test(String s) {
+      return s.contains("b");
+   }
+};
+System.out.println(predicate.test("australia") && predicate2.test("australia"));//valid
+System.out.println(predicate.and(predicate2).test("australia"));//valid
