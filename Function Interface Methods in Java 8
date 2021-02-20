@@ -11,7 +11,7 @@ System.out.println(supplier.get());
 
 <br/>
 
-2) void accept(T) ---CONSUMER---> It takes 1 argument and doesnt return anything.
+2) void accept(T) ---CONSUMER---> It takes 1 argument and doesnt return anything. //BiConsumer takes 2 arguments and returns nothing.
 Consumer<Integer> consumer = new Consumer<Integer>() {
    @Override
    public void accept(Integer integer) {
